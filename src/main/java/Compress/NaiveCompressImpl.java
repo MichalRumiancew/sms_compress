@@ -9,11 +9,12 @@ public class NaiveCompressImpl implements Compressor {
 
     @Override
     public String compress(String input) {
-
-        return Arrays.stream(input.split(" ")).map(
-                word -> word.substring(0, 1).toUpperCase()
-                        + word.substring(1).toLowerCase()).collect(Collectors.joining(""));
+        return Arrays.stream(input.split(" "))
+                .map(word -> word.length() > 0 ? word.substring(0,1).toUpperCase()
+                        + word.substring(1).toLowerCase(): word)
+                .collect(Collectors.joining(""));
     }
+
 
     @Override
     public String uncompress(String input) {
